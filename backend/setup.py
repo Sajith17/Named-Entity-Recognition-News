@@ -4,7 +4,7 @@ __version__ = "0.0.0"
 
 REPO_NAME = "Named-Entity-Recognition-News"
 AUTHOR_USER_NAME = "Sajith17"
-SRC_REPO = "NamedEntityRecognition"
+SRC_REPO = "named_entity_recognition"
 AUTHOR_EMAIL = "sajithseelan17@gmail.com"
 
 
