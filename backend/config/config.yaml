@@ -4,3 +4,8 @@ data_ingestion:
   root_dir: artifacts/data_ingestion
   source_name: conll2003
   local_data_file: artifacts/data_ingestion/data.pickle
+
+tokenizer_preparation:
+  root_dir: artifacts/tokenizer_preparation
+  data_path: artifacts/data_ingestion/data.pickle
+  tokenizer_path: artifacts/tokenizer_preparation/tokenizer.pickle
