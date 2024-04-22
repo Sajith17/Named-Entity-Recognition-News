@@ -4,8 +4,7 @@ from pathlib import Path
 @dataclass(frozen=True)
 class DataIngestionConfig:
     root_dir: Path
-    source_name: str
-    local_data_file: Path
+    dataset_name: str
 
 @dataclass(frozen=True)
 class TokenizerPreparationConfig:

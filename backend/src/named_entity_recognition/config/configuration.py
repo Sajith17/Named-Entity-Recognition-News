@@ -21,8 +21,7 @@ class ConfigurationManager:
 
           data_ingestion_config = DataIngestionConfig(
                root_dir=Path(config.root_dir),
-               source_name=config.source_name,
-               local_data_file=Path(config.local_data_file),
+               dataset_name=config.dataset_name
           )
          
           return data_ingestion_config
