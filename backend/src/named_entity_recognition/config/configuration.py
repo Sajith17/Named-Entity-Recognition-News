@@ -34,8 +34,7 @@ class ConfigurationManager:
 
         prepare_tokenizer_config = TokenizerPreparationConfig(
             root_dir = Path(config.root_dir),
-            data_path = Path(config.data_path),
-            tokenizer_path = Path(config.tokenizer_path)
+            data_path = Path(config.data_path)
         )
 
         return prepare_tokenizer_config 

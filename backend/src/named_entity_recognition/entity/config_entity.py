@@ -10,4 +10,3 @@ class DataIngestionConfig:
 class TokenizerPreparationConfig:
     root_dir: Path
     data_path: Path
-    tokenizer_path: Path

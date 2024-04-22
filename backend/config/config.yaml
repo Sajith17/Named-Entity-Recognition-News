@@ -6,7 +6,7 @@ data_ingestion:
 
 tokenizer_preparation:
   root_dir: artifacts/tokenizer_preparation
-  data_path: artifacts/data_ingestion/data.pickle
+  data_path: artifacts/data_ingestion/conll2003
 
 data_transformation:
   root_dir: artifacts/data_transformation
