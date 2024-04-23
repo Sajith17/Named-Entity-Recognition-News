@@ -1,6 +1,7 @@
 from named_entity_recognition import logger
 from named_entity_recognition.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from named_entity_recognition.pipeline.stage_02_tokenizer_preparation import TokenizerPreparationPipeline
+from named_entity_recognition.pipeline.stage_03_data_transformation import DataTransformationPipeline
 
 STAGE_NAME = "Data Ingestion stage"
 
@@ -18,6 +19,17 @@ STAGE_NAME = "Tokenizer Preparation stage"
 try:
     logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
     obj = TokenizerPreparationPipeline()
+    obj.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+    logger.exception(e)
+    raise e
+
+STAGE_NAME = "Data Transformation stage"
+
+try:
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    obj = DataTransformationPipeline()
     obj.main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:

@@ -1,7 +1,8 @@
 from named_entity_recognition.constants import *
 from named_entity_recognition.utils.common import read_yaml, create_directories
 from named_entity_recognition.entity.config_entity import (DataIngestionConfig,
-                                                           TokenizerPreparationConfig)
+                                                           TokenizerPreparationConfig,
+                                                           DataTransformationConfig)
 from pathlib import Path
 
 class ConfigurationManager:
@@ -32,9 +33,24 @@ class ConfigurationManager:
 
         create_directories([config.root_dir])
 
-        prepare_tokenizer_config = TokenizerPreparationConfig(
+        tokenizer_preparation_config = TokenizerPreparationConfig(
             root_dir = Path(config.root_dir),
             data_path = Path(config.data_path)
         )
 
-        return prepare_tokenizer_config 
+        return tokenizer_preparation_config 
+     
+     def get_data_transformation_config(self) -> DataTransformationConfig:
+
+        config = self.config.data_transformation
+        create_directories([config.root_dir])
+
+        data_transformation_config = DataTransformationConfig(
+            root_dir = Path(config.root_dir),
+            dataset_name = self.config.data_ingestion.dataset_name,
+            data_path = Path(config.data_path),
+            tokenizer_path = Path(config.tokenizer_path),
+            params_max_sequence_length=self.params.MAX_SEQUENCE_LENGTH,
+            params_label_all_tokens=self.params.LABEL_ALL_TOKENS
+        )
+        return data_transformation_config

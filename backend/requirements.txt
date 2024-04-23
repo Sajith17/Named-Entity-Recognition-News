@@ -1,6 +1,5 @@
 tensorflow==2.10.0
 pandas
-pickle
 datasets
 gdown
 dvc

@@ -1,1 +1,2 @@
-key: value
+MAX_SEQUENCE_LENGTH: 100
+LABEL_ALL_TOKENS: True

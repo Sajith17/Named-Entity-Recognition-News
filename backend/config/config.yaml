@@ -10,6 +10,5 @@ tokenizer_preparation:
 
 data_transformation:
   root_dir: artifacts/data_transformation
-  data_path: artifacts/data_ingestion/data.pickle
+  data_path: artifacts/data_ingestion/conll2003
   tokenizer_path: artifacts/tokenizer_preparation/tokenizer.pickle
-  updated_data_path: artifacts/data_transformation/data.pickle
