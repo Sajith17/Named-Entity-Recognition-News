@@ -14,7 +14,7 @@ class DataTransformation:
 
     def transform_data(self):
         data = load_from_disk(self.config.data_path)
-        data.map(self.tokenize_and_align_labels, batched=True).map(self.input_and_label_pad_sequence, batched=True).map(self.create_attention_mask, batched=True)
+        data = data.map(self.tokenize_and_align_labels, batched=True).map(self.input_and_label_pad_sequence, batched=True).map(self.create_attention_mask, batched=True)
         data.save_to_disk(os.path.join(self.config.root_dir,self.config.dataset_name))
 
     def load_tokenizer(self):

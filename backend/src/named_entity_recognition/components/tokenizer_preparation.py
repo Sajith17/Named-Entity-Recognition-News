@@ -17,4 +17,3 @@ class TokenizerPreparation:
         tokenizer.fit_on_texts([' '.join(x) for x in data['train']['tokens']])
         with open(os.path.join(self.config.root_dir, 'tokenizer.pickle'), 'wb') as f:
             pickle.dump(tokenizer, f)
-        logger.info(f"Tokenizer created successfully at {self.config.root_dir}")
