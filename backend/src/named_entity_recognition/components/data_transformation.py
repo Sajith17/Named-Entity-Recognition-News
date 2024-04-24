@@ -36,9 +36,9 @@ class DataTransformation:
                 if tokenized_words:
                     tokenized_sentence.extend(tokenized_words)
                     word_ids.extend([j]*len(tokenized_words))
-                    label_ids.append(ner_tags[j]+1)
+                    label_ids.append(ner_tags[j])
                     for k in range(len(tokenized_words)-1):
-                        label_ids.append(ner_tags[j]+1 if self.config.params_label_all_tokens else 0)
+                        label_ids.append(ner_tags[j] if self.config.params_label_all_tokens else 0)
             labels.append(label_ids)
             word_ids_list.append(word_ids)
             new_tokenized_inputs.append(tokenized_sentence)
@@ -50,7 +50,7 @@ class DataTransformation:
                                                                             padding='post', truncating='post'),
                 'labels': tf.keras.preprocessing.sequence.pad_sequences(examples['labels'],
                                                                         maxlen = self.config.params_max_sequence_length, 
-                                                                        padding='post', truncating='post' )}
+                                                                        padding='post', truncating='post', value=-1 )}
     def create_attention_mask(self,examples):
         mask = 1 - (np.array(examples['input_ids'])==0)
         return {"attention_mask": mask}

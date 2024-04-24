@@ -38,8 +38,8 @@ class ModelTrainer:
         optimizer = get_optimizer_with_custom_lr_sheduler(embedding_dim=self.config.params_embedding_dim)
         self.model.compile(optimizer=optimizer, loss=MaskedLoss(), metrics=[masked_acc])
         
-        train = tf.data.Dataset.from_tensor_slices((data['train']['input_ids'],data['train']['attention_mask'],data['train']['labels'])).map(lambda x,y,z: ((x,y),z)).shuffle(10000).batch(self.config.params_batch_size)
-        val = tf.data.Dataset.from_tensor_slices((data['validation']['input_ids'],data['validation']['attention_mask'],data['validation']['labels'])).map(lambda x,y,z: ((x,y),z)).batch(self.config.params_batch_size)
+        train = tf.data.Dataset.from_tensor_slices((data['train']['input_ids'],data['train']['attention_mask'],data['train']['labels'])).map(lambda x,y,z: (tf.concat((x,y),axis=-1),z)).shuffle(10000).batch(self.config.params_batch_size)
+        val = tf.data.Dataset.from_tensor_slices((data['validation']['input_ids'],data['validation']['attention_mask'],data['validation']['labels'])).map(lambda x,y,z: (tf.concat((x,y),axis=-1),z)).batch(self.config.params_batch_size)
 
         self.model.fit(
             train,
@@ -48,7 +48,7 @@ class ModelTrainer:
         )
         
 
-        self.save_model_weights(os.path.join(self.config.root_dir,'model'),self.model)
+        self.save_model_weights(os.path.join(self.config.root_dir,'model_weights'),self.model)
         
 
 

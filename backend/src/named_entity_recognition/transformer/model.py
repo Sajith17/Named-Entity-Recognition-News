@@ -23,8 +23,10 @@ class NERModel(tf.keras.Model):
     self.ffn_final = tf.keras.layers.Dense(num_tags,activation='softmax')
 
   def call(self, x, training):
-    x, mask = x
+    seq_length = tf.shape(x)[-1]//2
+    mask = x[:,seq_length:]
     mask = mask[:,tf.newaxis,:]
+    x = x[:,:seq_length]
     x = self.encoder(x,training, mask)
     x = self.dropout1(x, training = training)
     x = self.ffn(x)

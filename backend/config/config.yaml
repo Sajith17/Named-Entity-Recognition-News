@@ -16,3 +16,8 @@ data_transformation:
 model_trainer:
   root_dir: artifacts/model_trainer
   data_path: artifacts/data_transformation/conll2003
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  data_path: artifacts/data_transformation/conll2003
+  model_weights_path: artifacts/model_trainer/model_weights

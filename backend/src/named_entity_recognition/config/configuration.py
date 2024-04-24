@@ -3,7 +3,8 @@ from named_entity_recognition.utils.common import read_yaml, create_directories
 from named_entity_recognition.entity.config_entity import (DataIngestionConfig,
                                                            TokenizerPreparationConfig,
                                                            DataTransformationConfig,
-                                                           ModelTrainerConfig)
+                                                           ModelTrainerConfig,
+                                                           ModelEvaluationConfig)
 from pathlib import Path
 
 class ConfigurationManager:
@@ -77,3 +78,24 @@ class ConfigurationManager:
         )
 
         return model_trainer_config
+     
+     def get_model_evaluation_config(self):
+
+        config = self.config.model_evaluation
+        create_directories([config.root_dir])
+
+        evaluation_config = ModelEvaluationConfig(
+            root_dir = Path(config.root_dir),
+            data_path = Path(config.data_path),
+            model_weights_path = Path(config.model_weights_path),
+            params_num_encoder_layers=self.params.NUM_ENCODER_LAYERS,
+            params_num_tags = self.params.NUM_TAGS,
+            params_vocab_size = self.params.VOCAB_SIZE,
+            params_embedding_dim = self.params.EMBEDDING_DIM,
+            params_fully_connected_dim = self.params.FULLY_CONNECTED_DIM,
+            params_num_heads = self.params.NUM_HEADS,
+            params_max_positional_encoding_length = self.params.MAX_POSITIONAL_ENCODING_LENGTH,
+            params_batch_size = self.params.BATCH_SIZE,    
+        )
+
+        return evaluation_config
