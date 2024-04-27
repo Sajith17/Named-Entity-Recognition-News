@@ -18,4 +18,4 @@ class DataIngestion:
             logger.info(f"{self.config.dataset_name} dataset downloaded successfully")
 
         else:
-            logger.info(f"File already exists of size: {get_size(local_data_file)}")
+            logger.info(f"File already exists of size: {get_size(Path(local_data_file))}")
