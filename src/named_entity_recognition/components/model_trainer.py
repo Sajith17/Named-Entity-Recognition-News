@@ -36,6 +36,11 @@ class ModelTrainer:
         data = load_from_disk(str(self.config.data_path))
 
         optimizer = get_optimizer_with_custom_lr_sheduler(embedding_dim=self.config.params_embedding_dim)
+        early_stopping = tf.keras.callbacks.EarlyStopping(
+                                        monitor='val_loss',
+                                        patience=3,
+                                        restore_best_weights=True,
+                                    )
         self.model.compile(optimizer=optimizer, loss=MaskedLoss(), metrics=[masked_acc])
         
         train = tf.data.Dataset.from_tensor_slices((data['train']['input_ids'],data['train']['attention_mask'],data['train']['labels'])).map(lambda x,y,z: (tf.concat((x,y),axis=-1),z)).shuffle(10000).batch(self.config.params_batch_size)
@@ -44,7 +49,8 @@ class ModelTrainer:
         self.model.fit(
             train,
             validation_data=(val),
-            epochs=self.config.params_epochs
+            epochs=self.config.params_epochs,
+            callbacks=[early_stopping]
         )
         
 
