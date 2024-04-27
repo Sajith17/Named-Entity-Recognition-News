@@ -16,7 +16,6 @@ class ModelEvaluationPipeline:
         model_evaluation.evaluate()
         model_evaluation.log_into_mlflow()
 
-
 try:
     logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
     obj = ModelEvaluationPipeline()

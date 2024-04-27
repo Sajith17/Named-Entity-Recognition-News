@@ -14,6 +14,14 @@ class DataTransformationPipeline:
         data_transformation = DataTransformation(data_transformation_config)
         data_transformation.transform_data()
 
+try:
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    obj = DataTransformationPipeline()
+    obj.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+    logger.exception(e)
+    raise e
     
 
     

@@ -13,3 +13,13 @@ class TokenizerPreparationPipeline:
         data_ingestion_config = config.get_tokenizer_preparation_config()
         data_ingestion = TokenizerPreparation(config=data_ingestion_config)
         data_ingestion.prepare_tokenizer()
+
+
+try:
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    obj = TokenizerPreparationPipeline()
+    obj.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+    logger.exception(e)
+    raise e
