@@ -20,6 +20,7 @@ class DataTransformationConfig:
     params_max_sequence_length: int
     params_label_all_tokens: bool
 
+
 @dataclass(frozen=True)
 class ModelTrainerConfig:
     root_dir: Path
@@ -38,7 +39,9 @@ class ModelTrainerConfig:
 class ModelEvaluationConfig:
     root_dir: Path
     data_path: Path
-    model_weights_path: Path
+    model_path: Path
+    mlflow_uri: str
+    all_params: dict
     params_num_encoder_layers: int
     params_num_tags: int
     params_vocab_size: int

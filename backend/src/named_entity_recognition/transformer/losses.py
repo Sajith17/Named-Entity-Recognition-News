@@ -1,8 +1,9 @@
 import tensorflow as tf
 
+
 class MaskedLoss(tf.keras.losses.Loss):
-    def __init__(self, name="custom_ner_loss"):
-        super().__init__(name=name)
+    def __init__(self, name="custom_ner_loss", reduction='none'):
+        super().__init__(name=name, reduction=reduction)
         self.loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False, reduction='none')
 
     def call(self, y_true, y_pred):
@@ -15,3 +16,4 @@ class MaskedLoss(tf.keras.losses.Loss):
         loss *= mask
 
         return tf.reduce_sum(loss)/tf.reduce_sum(mask)
+    

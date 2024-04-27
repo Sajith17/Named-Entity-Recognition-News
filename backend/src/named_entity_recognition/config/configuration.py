@@ -87,7 +87,9 @@ class ConfigurationManager:
         evaluation_config = ModelEvaluationConfig(
             root_dir = Path(config.root_dir),
             data_path = Path(config.data_path),
-            model_weights_path = Path(config.model_weights_path),
+            model_path = Path(config.model_path),
+            mlflow_uri = config.mlflow_uri,
+            all_params = self.params,
             params_num_encoder_layers=self.params.NUM_ENCODER_LAYERS,
             params_num_tags = self.params.NUM_TAGS,
             params_vocab_size = self.params.VOCAB_SIZE,
@@ -99,3 +101,4 @@ class ConfigurationManager:
         )
 
         return evaluation_config
+

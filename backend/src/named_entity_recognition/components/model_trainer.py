@@ -33,7 +33,7 @@ class ModelTrainer:
 
     def train(self):
 
-        data = load_from_disk(self.config.data_path)
+        data = load_from_disk(str(self.config.data_path))
 
         optimizer = get_optimizer_with_custom_lr_sheduler(embedding_dim=self.config.params_embedding_dim)
         self.model.compile(optimizer=optimizer, loss=MaskedLoss(), metrics=[masked_acc])
@@ -48,13 +48,13 @@ class ModelTrainer:
         )
         
 
-        self.save_model_weights(os.path.join(self.config.root_dir,'model_weights'),self.model)
+        self.save_model(os.path.join(self.config.root_dir,'model.keras'),self.model)
         
 
 
     @staticmethod
-    def save_model_weights(path: Path, model: tf.keras.models.Model):
-        model.save_weights(path)
+    def save_model(path: Path, model: tf.keras.models.Model):
+        model.save(path)
 
     def load_tokenizer(self):
         with open(self.config.tokenizer_path, 'rb') as f:

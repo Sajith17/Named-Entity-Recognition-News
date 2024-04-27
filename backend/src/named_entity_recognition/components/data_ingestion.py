@@ -10,8 +10,8 @@ class DataIngestion:
     def __init__(self, config: DataIngestionConfig):
         self.config = config
 
-    def download_file(self):
-        local_data_file = Path(os.path.join(self.config.root_dir,self.config.dataset_name))
+    def download_data(self):
+        local_data_file = os.path.join(self.config.root_dir,self.config.dataset_name)
         if not os.path.exists(local_data_file):
             data = load_dataset(self.config.dataset_name)
             data.save_to_disk(local_data_file)

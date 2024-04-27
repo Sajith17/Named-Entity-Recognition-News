@@ -20,4 +20,5 @@ model_trainer:
 model_evaluation:
   root_dir: artifacts/model_evaluation
   data_path: artifacts/data_transformation/conll2003
-  model_weights_path: artifacts/model_trainer/model_weights
+  model_path: artifacts/model_trainer/model.keras
+  mlflow_uri: https://dagshub.com/sajithseelan17/Named-Entity-Recognition-News.mlflow
