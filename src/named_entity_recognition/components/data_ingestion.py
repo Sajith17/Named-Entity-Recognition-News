@@ -12,10 +12,6 @@ class DataIngestion:
 
     def download_data(self):
         local_data_file = os.path.join(self.config.root_dir,self.config.dataset_name)
-        if not os.path.exists(local_data_file):
-            data = load_dataset(self.config.dataset_name)
-            data.save_to_disk(local_data_file)
-            logger.info(f"{self.config.dataset_name} dataset downloaded successfully")
-
-        else:
-            logger.info(f"File already exists of size: {get_size(Path(local_data_file))}")
+        data = load_dataset(self.config.dataset_name)
+        data.save_to_disk(local_data_file)
+        logger.info(f"{self.config.dataset_name} dataset downloaded successfully")

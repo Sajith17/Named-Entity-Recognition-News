@@ -19,6 +19,7 @@ stages:
     deps:
       - config/config.yaml
       - src/named_entity_recognition/pipeline/stage_03_data_transformation.py
+      - artifacts/data_ingestion/conll2003
       - artifacts/tokenizer_preparation/tokenizer.pickle
     outs:
       - artifacts/data_transformation/conll2003

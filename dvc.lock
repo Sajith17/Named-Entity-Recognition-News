@@ -41,6 +41,11 @@ stages:
   data_transformation:
     cmd: python src/named_entity_recognition/pipeline/stage_03_data_transformation.py
     deps:
+    - path: artifacts/data_ingestion/conll2003
+      hash: md5
+      md5: d72863eb05c2893e51fed021a8836dd0.dir
+      size: 110053747
+      nfiles: 19
     - path: artifacts/tokenizer_preparation/tokenizer.pickle
       hash: md5
       md5: 99607d1ad8ca7f2f192125ca4efe7163
@@ -79,7 +84,7 @@ stages:
       params.yaml:
         BATCH_SIZE: 64
         EMBEDDING_DIM: 64
-        EPOCHS: 2
+        EPOCHS: 15
         FULLY_CONNECTED_DIM: 64
         MAX_POSITIONAL_ENCODING_LENGTH: 150
         NUM_ENCODER_LAYERS: 2
@@ -87,7 +92,7 @@ stages:
     outs:
     - path: artifacts/model_trainer/model.keras
       hash: md5
-      md5: f72502a38def9d1be3b993e1d5212ce9
+      md5: 63f870a3f7bd4946614126fb729d86ff
       size: 14773204
   model_evaluation:
     cmd: python src/named_entity_recognition/pipeline/stage_05_model_evaluation.py
@@ -99,7 +104,7 @@ stages:
       nfiles: 10
     - path: artifacts/model_trainer/model.keras
       hash: md5
-      md5: f72502a38def9d1be3b993e1d5212ce9
+      md5: 63f870a3f7bd4946614126fb729d86ff
       size: 14773204
     - path: config/config.yaml
       hash: md5
@@ -107,13 +112,13 @@ stages:
       size: 777
     - path: src/named_entity_recognition/pipeline/stage_05_model_evaluation.py
       hash: md5
-      md5: 318393f00ad90bbdec90dd134265986c
-      size: 976
+      md5: 2402905928cb09d9b7f90ef0331d3b50
+      size: 974
     params:
       params.yaml:
         BATCH_SIZE: 64
     outs:
     - path: artifacts\model_evaluation\scores.json
       hash: md5
-      md5: decc6a4c2b9a90aede91c51bdfdcb06d
-      size: 184
+      md5: 2dd204ef0de462e3b588b6d8f2f1a5aa
+      size: 181
