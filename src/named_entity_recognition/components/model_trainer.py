@@ -29,19 +29,22 @@ class ModelTrainer:
         )
 
         self.model = model
+        self.model.encoder.embedding.build((1,))
+        self.model.encoder.embedding.set_weights([self.load_embedding_weights()])
+        self.model.encoder.embedding.trainable = False
 
+        optimizer = get_optimizer_with_custom_lr_sheduler(embedding_dim=self.config.params_embedding_dim)
+        
+        self.model.compile(optimizer=optimizer, loss=MaskedLoss(), metrics=[masked_acc])
 
     def train(self):
 
         data = load_from_disk(str(self.config.data_path))
-
-        optimizer = get_optimizer_with_custom_lr_sheduler(embedding_dim=self.config.params_embedding_dim)
         early_stopping = tf.keras.callbacks.EarlyStopping(
                                         monitor='val_loss',
                                         patience=3,
                                         restore_best_weights=True,
                                     )
-        self.model.compile(optimizer=optimizer, loss=MaskedLoss(), metrics=[masked_acc])
         
         train = tf.data.Dataset.from_tensor_slices((data['train']['input_ids'],data['train']['attention_mask'],data['train']['labels'])).map(lambda x,y,z: (tf.concat((x,y),axis=-1),z)).shuffle(10000).batch(self.config.params_batch_size)
         val = tf.data.Dataset.from_tensor_slices((data['validation']['input_ids'],data['validation']['attention_mask'],data['validation']['labels'])).map(lambda x,y,z: (tf.concat((x,y),axis=-1),z)).batch(self.config.params_batch_size)
@@ -66,4 +69,9 @@ class ModelTrainer:
         with open(self.config.tokenizer_path, 'rb') as f:
             tokenizer = pickle.load(f)
         return tokenizer
+    
+    def load_embedding_weights(self):
+        with open(self.config.embedding_weights_path, 'rb') as f:
+            embedding_weights = pickle.load(f)
+        return embedding_weights
 

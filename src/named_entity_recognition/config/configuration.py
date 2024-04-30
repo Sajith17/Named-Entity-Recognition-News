@@ -70,6 +70,7 @@ class ConfigurationManager:
         model_trainer_config = ModelTrainerConfig(
             root_dir = Path(config.root_dir),
             data_path = Path(config.data_path),
+            embedding_weights_path=Path(config.embedding_weights_path),
             params_num_encoder_layers=params.NUM_ENCODER_LAYERS,
             params_num_tags = params.NUM_TAGS,
             params_vocab_size = params.VOCAB_SIZE,

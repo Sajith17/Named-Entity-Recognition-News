@@ -52,7 +52,7 @@ class EmbeddingPreparation:
         for word, i in self.tokenizer.word_index.items():
             if word in self.word_to_vec:
                 embedding_weights[i] = self.word_to_vec[word]
-        with open(os.path.join(self.config.root_dir, 'embedding.pickle'), 'wb') as f:
+        with open(os.path.join(self.config.root_dir, 'embedding_weights.pickle'), 'wb') as f:
             pickle.dump(embedding_weights, f)
         
 

@@ -6,21 +6,23 @@ stages:
       - src/named_entity_recognition/pipeline/stage_01_data_ingestion.py
     outs:
       - artifacts/data_ingestion/conll2003
-  tokenizer_preparation:
-    cmd: python src/named_entity_recognition/pipeline/stage_02_tokenizer_preparation.py
+  embedding_preparation:
+    cmd: python src/named_entity_recognition/pipeline/stage_02_embedding_preparation.py
     deps:
       - config/config.yaml
-      - src/named_entity_recognition/pipeline/stage_02_tokenizer_preparation.py
-      - artifacts/data_ingestion/conll2003
+      - src/named_entity_recognition/pipeline/stage_02_embedding_preparation.py
+    params:
+      - EMBEDDING_DIM
     outs:
-      - artifacts/tokenizer_preparation/tokenizer.pickle
+      - artifacts/embedding_preparation/glove.6B
+      - artifacts/embedding_preparation/tokenizer.pickle
+      - artifacts/embedding_preparation/embedding_weights.pickle
   data_transformation:
     cmd: python src/named_entity_recognition/pipeline/stage_03_data_transformation.py
     deps:
       - config/config.yaml
       - src/named_entity_recognition/pipeline/stage_03_data_transformation.py
-      - artifacts/data_ingestion/conll2003
-      - artifacts/tokenizer_preparation/tokenizer.pickle
+      - artifacts/embedding_preparation/tokenizer.pickle
     outs:
       - artifacts/data_transformation/conll2003
   model_training:

@@ -29,6 +29,7 @@ class DataTransformationConfig:
 class ModelTrainerConfig:
     root_dir: Path
     data_path: Path
+    embedding_weights_path: Path
     params_num_encoder_layers: int
     params_num_tags: int
     params_vocab_size: int
