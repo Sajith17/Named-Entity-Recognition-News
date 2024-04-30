@@ -7,9 +7,13 @@ class DataIngestionConfig:
     dataset_name: str
 
 @dataclass(frozen=True)
-class TokenizerPreparationConfig:
+class EmbeddingPreparationConfig:
     root_dir: Path
-    data_path: Path
+    source_URL: str
+    local_embedding_file: Path
+    unzip_dir: Path
+    params_embedding_dims: int
+    params_vocab_size: int
 
 @dataclass(frozen=True)
 class DataTransformationConfig:

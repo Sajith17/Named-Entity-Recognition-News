@@ -1,7 +1,7 @@
 from named_entity_recognition.constants import *
 from named_entity_recognition.utils.common import read_yaml, create_directories
 from named_entity_recognition.entity.config_entity import (DataIngestionConfig,
-                                                           TokenizerPreparationConfig,
+                                                           EmbeddingPreparationConfig,
                                                            DataTransformationConfig,
                                                            ModelTrainerConfig,
                                                            ModelEvaluationConfig)
@@ -29,18 +29,22 @@ class ConfigurationManager:
          
           return data_ingestion_config
      
-     def get_tokenizer_preparation_config(self) -> TokenizerPreparationConfig:
+     def get_embedding_preparation_config(self) -> EmbeddingPreparationConfig:
 
-        config = self.config.tokenizer_preparation
+        config = self.config.embedding_preparation
 
         create_directories([config.root_dir])
 
-        tokenizer_preparation_config = TokenizerPreparationConfig(
+        embedding_preparation_config = EmbeddingPreparationConfig(
             root_dir = Path(config.root_dir),
-            data_path = Path(config.data_path)
+            source_URL=config.source_URL,
+            local_embedding_file=Path(config.local_embedding_file),
+            unzip_dir=Path(config.unzip_dir),
+            params_embedding_dims=self.params.EMBEDDING_DIM,
+            params_vocab_size=self.params.VOCAB_SIZE
         )
 
-        return tokenizer_preparation_config 
+        return embedding_preparation_config 
      
      def get_data_transformation_config(self) -> DataTransformationConfig:
 
