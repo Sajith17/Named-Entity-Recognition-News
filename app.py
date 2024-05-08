@@ -10,6 +10,7 @@ class ClientApp:
         self.ner = PredictionPipeline()
 
 
+
 @app.route("/predict", methods=["POST"])
 def predict():
     data = request.json
@@ -20,4 +21,5 @@ def predict():
     
 if __name__ == "__main__":
     cl_app = ClientApp()
+    cl_app.ner.get_model()
     app.run(debug=True)
