@@ -4,18 +4,21 @@ data_ingestion:
   root_dir: artifacts/data_ingestion
   dataset_name: conll2003
 
-tokenizer_preparation:
-  root_dir: artifacts/tokenizer_preparation
-  data_path: artifacts/data_ingestion/conll2003
+embedding_preparation:
+  root_dir: artifacts/embedding_preparation
+  source_URL: https://downloads.cs.stanford.edu/nlp/data/glove.6B.zip
+  local_embedding_file: artifacts/embedding_preparation/glove.6B.zip
+  unzip_dir: artifacts/embedding_preparation/glove.6B/
 
 data_transformation:
   root_dir: artifacts/data_transformation
   data_path: artifacts/data_ingestion/conll2003
-  tokenizer_path: artifacts/tokenizer_preparation/tokenizer.pickle
+  tokenizer_path: artifacts/embedding_preparation/tokenizer.pickle
 
 model_trainer:
   root_dir: artifacts/model_trainer
   data_path: artifacts/data_transformation/conll2003
+  embedding_weights_path: artifacts/embedding_preparation/embedding_weights.pickle
 
 model_evaluation:
   root_dir: artifacts/model_evaluation

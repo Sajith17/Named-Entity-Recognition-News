@@ -1,6 +1,6 @@
 import os
 import pickle
-from datasets import load_from_disk
+from datasets import load_from_disk, load_dataset
 from named_entity_recognition import logger
 import numpy as np
 import tensorflow as tf
