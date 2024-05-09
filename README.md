@@ -10,7 +10,7 @@ Some challenges I faced included **overfitting of token embeddings during traini
 
 ### Screenshot
 
-![Screenshot](image.png)
+<img src="image.png" width="80%">
 
 ## Prerequisites
 
