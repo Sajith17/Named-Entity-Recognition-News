@@ -1,3 +1,4 @@
+import os
 import tensorflow as tf
 import pickle
 from named_entity_recognition import logger
@@ -96,12 +97,12 @@ class PredictionPipeline:
 
 
     def get_tokenizer(self):
-        with open(self.config.tokenizer_path,'rb') as f:
+        with open(os.path.join('model','tokenizer.pickle'),'rb') as f:
             tokenizer = pickle.load(f) 
         return tokenizer
     
     def get_model(self):
-        model = tf.keras.models.load_model(self.model_path, custom_objects={
+        model = tf.keras.models.load_model(os.path.join('model','model.keras'), custom_objects={
             'NERModel':NERModel,
             'MaskedLoss':MaskedLoss,
             'masked_acc': masked_acc,
