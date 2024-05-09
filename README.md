@@ -8,6 +8,10 @@ I utilized **Tranformer Encoder** architecture and **Glove pretrained embeddings
 
 Some challenges I faced included **overfitting of token embeddings during training** which did not bring a decent semantic representation which resulted in model being less generalized to the real world data. To address this, I replaced the weights with **Glove 100d pre-trained embeddings** and froze them.
 
+### Screenshot
+
+![Screenshot](image.png)
+
 ## Prerequisites
 
 Ensure you have the following software installed:
