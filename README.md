@@ -62,10 +62,19 @@ Ensure you have the following software installed:
 
 ## Results
 
+|                          |      |
+| ------------------------ | ---- |
+| accuracy                 | 0.94 |
+| precision(macro-average) | 0.77 |
+| recall(macro-average)    | 0.69 |
+| f1-score(macro-average)  | 0.72 |
 
-| ------------------------------ | --------- | 
-| accuracy                       | 0.94      | 
-| precision(macro-average)       | 0.77      |
-| recall(macro-average)          | 0.69      |
-| f1-score(macro-average)        | 0.72      |
+## Data Source
 
+**Dataset**
+
+- [conll2003](https://huggingface.co/datasets/conll2003)
+
+**Embeddings**
+
+- [GloVe 6B](https://downloads.cs.stanford.edu/nlp/data/glove.6B.zip)
