@@ -60,3 +60,12 @@ Ensure you have the following software installed:
 4.  **Access the Website:**
     Navigate to `http://127.0.0.1:3000/` on your browser.
 
+## Results
+
+
+| ------------------------------ | --------- | 
+| accuracy                       | 0.94      | 
+| precision(macro-average)       | 0.77      |
+| recall(macro-average)          | 0.69      |
+| f1-score(macro-average)        | 0.72      |
+
