@@ -22,4 +22,4 @@ def predict():
 if __name__ == "__main__":
     cl_app = ClientApp()
     cl_app.ner.get_model()
-    app.run(debug=True)
+    app.run()
